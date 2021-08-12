@@ -13,7 +13,7 @@ def text_to_labels(text):      # text를 letters 배열에서의 인덱스 값�
 
 class TextImageGenerator:
     def __init__(self, img_dirpath, img_w, img_h,
-                 batch_size, downsample_factor, max_text_len=9):
+                 batch_size, downsample_factor, max_text_len=8):
         self.img_h = img_h
         self.img_w = img_w
         self.batch_size = batch_size

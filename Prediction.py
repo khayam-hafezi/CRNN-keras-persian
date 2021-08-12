@@ -89,7 +89,8 @@ for test_img in test_imgs:
     if pred_texts == test_img[0:-4]:
         acc += 1
     total += 1
-    print('Predicted: %s  /  True: %s' % (label_to_hangul(pred_texts), label_to_hangul(test_img[0:-4])))
+    # print('Predicted: %s  /  True: %s / net_out_value: %s / ' % (label_to_hangul(pred_texts), label_to_hangul(test_img[0:-4])))
+    print('Predicted: %s  /  True: %s / pred_texts: %s ' % (pred_texts, test_img[0:-4], pred_texts ))
     
     # cv2.rectangle(img, (0,0), (150, 30), (0,0,0), -1)
     # cv2.putText(img, pred_texts, (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255),2)

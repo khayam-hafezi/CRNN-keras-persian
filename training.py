@@ -28,14 +28,16 @@ tiger_val.build_data()
 ada = Adadelta()
 
 early_stop = EarlyStopping(monitor='loss', min_delta=0.001, patience=4, mode='min', verbose=1)
-checkpoint = ModelCheckpoint(filepath='LSTM+BN5--{epoch:02d}--{val_loss:.3f}.hdf5', monitor='loss', verbose=1, mode='min', period=1)
+# checkpoint = ModelCheckpoint(filepath='LSTM+BN5--{epoch:02d}--{val_loss:.3f}.hdf5', monitor='loss', verbose=1, mode='min', period=1)
+filepath="weights.best.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 # the loss calc occurs elsewhere, so use a dummy lambda func for the loss
 model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=ada)
 
 # captures output of softmax so we can decode the output during visualization
 model.fit_generator(generator=tiger_train.next_batch(),
                     steps_per_epoch=int(tiger_train.n / batch_size),
-                    epochs=30,
+                    epochs=500,
                     callbacks=[checkpoint],
                     validation_data=tiger_val.next_batch(),
                     validation_steps=int(tiger_val.n / val_batch_size))

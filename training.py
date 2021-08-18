@@ -1,5 +1,6 @@
 from keras import backend as K
-from keras.optimizers import Adadelta
+#from keras.optimizers import Adadelta
+from tensorflow.keras.optimizers import Adadelta
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from Image_Generator import TextImageGenerator
 from Model import get_Model
@@ -21,7 +22,7 @@ train_file_path = './DB/train/'
 tiger_train = TextImageGenerator(train_file_path, img_w, img_h, batch_size, downsample_factor)
 tiger_train.build_data()
 
-valid_file_path = './DB/test/'
+valid_file_path = './DB/validation/'
 tiger_val = TextImageGenerator(valid_file_path, img_w, img_h, val_batch_size, downsample_factor)
 tiger_val.build_data()
 

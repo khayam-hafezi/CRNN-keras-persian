@@ -85,12 +85,14 @@ for test_img in test_imgs:
         if pred_texts[i] == test_img[i]:
             letter_acc += 1
     letter_total += max(len(pred_texts), len(test_img[0:-4]))
-
+    predOk = "True"
     if pred_texts == test_img[0:-4]:
         acc += 1
+    else:
+        predOk = "False"
     total += 1
     # print('Predicted: %s  /  True: %s / net_out_value: %s / ' % (label_to_hangul(pred_texts), label_to_hangul(test_img[0:-4])))
-    print('Predicted: %s  /  True: %s / pred_texts: %s ' % (pred_texts, test_img[0:-4], pred_texts ))
+    print('Predicted: %s  /  True: %s / predOk: %s ' % (pred_texts, test_img[0:-4], predOk ))
     
     # cv2.rectangle(img, (0,0), (150, 30), (0,0,0), -1)
     # cv2.putText(img, pred_texts, (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255,255,255),2)

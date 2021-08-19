@@ -45,7 +45,7 @@ def label_to_hangul(label):  # eng -> hangul
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-w", "--weight", help="weight file directory",
-                    type=str, default="Final_weight.hdf5")
+                    type=str, default="models/weights.best.hdf5")
 parser.add_argument("-t", "--test_img", help="Test image directory",
                     type=str, default="./DB/test/")
 args = parser.parse_args()

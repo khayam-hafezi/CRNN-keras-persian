@@ -1,6 +1,6 @@
 from keras import backend as K
 #from keras.optimizers import Adadelta
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adadelta
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from Image_Generator import TextImageGenerator
 from Model import get_Model
@@ -14,9 +14,9 @@ import os
 # # Model description and training
 
 model = get_Model(training=True)
-
+model_path = os.path.join(sys.argv[2] + "weights.best.hdf5")
 try:
-    model.load_weights('LSTM+BN4--26--0.011.hdf5')
+    model.load_weights(model_path)
     print("...Previous weight data...")
 except:
     print("...New weight data...")
@@ -30,7 +30,7 @@ valid_file_path = './DB/validation/'
 tiger_val = TextImageGenerator(valid_file_path, img_w, img_h, val_batch_size, downsample_factor)
 tiger_val.build_data()
 
-ada = Adam()
+ada = Adadelta()
 
 early_stop = EarlyStopping(monitor='loss', min_delta=0.001, patience=4, mode='min', verbose=1)
 # checkpoint = ModelCheckpoint(filepath='LSTM+BN5--{epoch:02d}--{val_loss:.3f}.hdf5', monitor='loss', verbose=1, mode='min', period=1)

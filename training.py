@@ -14,8 +14,8 @@ import os
 # # Model description and training
 
 model = get_Model(training=True)
-model_path = os.path.join(sys.argv[2] + "weights.best.hdf5")
 try:
+    model_path = os.path.join(sys.argv[2] + "weights.best.hdf5")
     model.load_weights(model_path)
     print("...Previous weight data...")
 except:

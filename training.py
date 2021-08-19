@@ -31,7 +31,7 @@ valid_file_path = './DB/validation/'
 tiger_val = TextImageGenerator(valid_file_path, img_w, img_h, val_batch_size, downsample_factor)
 tiger_val.build_data()
 
-ada = Adagrad()
+ada = Adamax()
 
 early_stop = EarlyStopping(monitor='loss', min_delta=0.001, patience=4, mode='min', verbose=1)
 # checkpoint = ModelCheckpoint(filepath='LSTM+BN5--{epoch:02d}--{val_loss:.3f}.hdf5', monitor='loss', verbose=1, mode='min', period=1)

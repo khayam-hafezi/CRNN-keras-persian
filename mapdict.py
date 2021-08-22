@@ -53,6 +53,22 @@ FarsiMapenDict = {
     "ژ" : "G" ,
     "ظ" : "O"
 }
+letterMapNumberDict = {
+            "B": "0",
+            "C": "1",
+            "D": "2",
+            "H": "3",
+            "J": "4",
+            "L": "5",
+            "M": "6",
+            "N": "7",
+            "Q": "8",
+            "S": "9",
+            "T": "10",
+            "V": "11",
+            "X": "12",
+            "Y": "13"
+        }
 # a= list(EnMapFarsiDict.keys())
 #
 # print(''.join(a), len(a))

@@ -3,7 +3,6 @@ from keras import backend as K
 from tensorflow.keras.optimizers import Adam, Adadelta, SGD, RMSprop, Adagrad, Adamax, Nadam, Ftrl
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from Image_Generator import TextImageGenerator
-from Model import get_Model
 from parameter import *
 K.set_learning_phase(0)
 import argparse
@@ -20,7 +19,20 @@ parser.add_argument("-w", "--weight", help="weight file directory",
                     type=str, default="models/weights.best.hdf5")
 parser.add_argument("-p", "--opt", help="optimizer",
                     type=str, default="Adadelta")
+parser.add_argument("-m", "--model", help="model",
+                    type=str, default="model")
 args = parser.parse_args()
+
+if args.model == "model":
+    print("model")
+    from Model import get_Model
+elif args.model == "model_256":
+    print("model_256")
+    from Model_256 import get_Model
+elif args.model == "model_T1":
+    print("model_T1")
+    from Model_T1 import get_Model
+
 
 model = get_Model(training=True)
 model_path = args.Previousweight
@@ -47,7 +59,7 @@ filepath= args.weight
 print(filepath)
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 # the loss calc occurs elsewhere, so use a dummy lambda func for the loss
-model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=selected_optimizer)
+model.compile(loss=dict(ctc=lambda y_true, y_pred: y_pred), optimizer=selected_optimizer)
 
 # captures output of softmax so we can decode the output during visualization
 model.fit_generator(generator=tiger_train.next_batch(),
